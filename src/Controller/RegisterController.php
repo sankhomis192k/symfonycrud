@@ -40,7 +40,7 @@ class RegisterController extends AbstractController
         	])
         	->add("register",SubmitType::class,[
         		"attr"=>[
-        			"class"=> "btn btn-primary float-right"
+        			"class"=> "btn btn-success btn-block"
         		]
         	])
         	->getForm();
