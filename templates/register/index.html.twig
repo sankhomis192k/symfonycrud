@@ -1,10 +1,29 @@
 {% extends 'layout.html.twig' %}
 
 {% block title %}Sign Up!{% endblock %}
+{% block stylesheets %}
 
+<style>
+body {
+    background-color:#f9f9f9;
+}
+
+form{
+    border: 1px solid #d8dee2;
+    border-radius: 5px;
+    padding:20px;
+    background-color:#fff;
+}
+.authForm-header {
+    color:#333;
+    text-align:center;
+}
+</style>
+{% endblock %}
 {% block body %}
 <div class="row mt-5">
-    <div class="col-md-6 offset-3">    	
+    <div class="col-md-6 offset-3">  
+    <h1 class="h3 mb-3 authForm-header">Sign up</h1>  	
 		{{ form(form) }}
 	</div>
 </div>
