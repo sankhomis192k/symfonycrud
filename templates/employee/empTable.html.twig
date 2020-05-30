@@ -1,0 +1,25 @@
+<table id="empTable" class="table table-dark">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Mobile</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for employee in employees %}
+		<tr>
+			<td>{{ employee.id }}</td>
+			<td>{{ employee.fullname }}</td>
+			<td>{{ employee.email }}</td>
+			<td>{{ employee.mobile }}</td>
+			<td>
+				<a href="#" class="btn btn-sm btn-info edit">Edit</a>
+				<a href="#" class="btn btn-sm btn-danger del">Delete</a>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>

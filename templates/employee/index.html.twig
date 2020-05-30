@@ -1,0 +1,69 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Employee{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+<style type="text/css">
+      body {
+        background-color: #ccc;
+      }
+</style>
+{% endblock %}
+
+{% block body %}
+{% include 'navbar.html.twig' %}
+{# empTable #}
+{% include 'employee/empTable.html.twig' %}
+{# Employee Modal #}
+{% include 'employee/empInsert.html.twig' %}
+{# empUpdateModal #}
+{% include 'employee/empUpdate.html.twig' %}
+{# empDeleteModal #}
+{% include 'employee/delEmployee.html.twig' %}
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+	var empTable = $("#empTable").DataTable();
+	empTable.on('click','.edit',function(e){
+		e.preventDefault();
+		var $tr = $(this).closest("tr");
+
+		if($($tr).hasClass('child')){
+			$tr = $tr.prev('.parent');
+		}
+
+		var data = empTable.row($tr).data();		
+
+		$("#fullname").val(data[1]);
+		$("#email").val(data[2]);
+		$("#mobile").val(data[3]);
+
+		$("#empUpdateForm").attr('action','/employee/edit/'+data[0]);
+		$("#empUpdateModal").modal('show');
+	});
+
+	empTable.on('click','.del',function(e){
+		e.preventDefault();
+		var $tr = $(this).closest("tr");
+
+		if($($tr).hasClass('child')){
+			$tr = $tr.prev('.parent');
+		}
+
+		var data = empTable.row($tr).data();
+		$("#id").val(data[0]);
+		var url = "employee/delete/"+data[0];
+
+		$("#empDeleteForm").attr('action',url);
+		$("#empDelModal").modal('show');		
+	});
+});
+</script>
+
+{% endblock %}
