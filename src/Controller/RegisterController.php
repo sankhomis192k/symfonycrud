@@ -38,7 +38,7 @@ class RegisterController extends AbstractController
         		"first_options"=> ["label"=>"Password"],
         		"second_options"=> ["label"=>"Confirm Password"]
         	])
-        	->add("register",SubmitType::class,[
+        	->add("sign_up",SubmitType::class,[
         		"attr"=>[
         			"class"=> "btn btn-success btn-block"
         		]
